@@ -1,0 +1,28 @@
+<div ng-controller='dashboardController'>
+    <a href="#!/">Bucket List</a>
+    <a href="#!/dashboard">Home</a>
+    <a href="#!/logout">Logout</a>
+    <hr>
+
+
+    <h3>Welcome, {{current_user.name}}!</h3>
+    <form ng-submit='addList(list)'>
+
+        <strong>Title: </strong><input type="text" ng-model='list.title'> <strong>Description: </strong><input type="text" ng-model='list.description'>
+        <select ng-model='list.tagged' style="margin-left:10px;">
+            <option ng-repeat="user in users" ng-show="user.name!=current_user.name" value={{user._id}}>{{user.name}}</option>
+        </select>
+        <input type="hidden" ng-model='current_user._id' style="margin-left:10px;">
+        <input type="submit" name="submit" value="Add to list" style="margin-left:10px;">
+    </form>
+    <div ng-controller='dashboardController'>
+        <p>{{list.errors.title.message}}</p>
+        <p>{{list.errors.description.message}}</p>
+    </div>
+
+    <h4>Before I die I want to...</h4>
+    <p ng-repeat="list in lists" ng-show="list._creator._id === current_user._id || list.tagged._id === current_user._id"> <input ng-click="checkItem(list)" type="checkbox" ng-checked="list.status=='1'"> {{list._creator.name}} || {{list.title}} - {{list.description}} and tagged {{list.tagged.name}}...-{{list.createdAt | date:'MMM. dd, yyyy'}}...{{list.status}}</p>
+
+    <h4>List of other users (Click to view profile):</h4>
+    <p ng-repeat="user in users" ng-show="current_user._id != user._id"><a href="#!/show/{{user._id}}">{{user.name}}</a></p>
+</div>

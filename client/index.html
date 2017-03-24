@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+  <head>
+    <meta charset="utf-8">
+    <title>MEAN BELT</title>
+
+    <script type="text/javascript" src="angular/angular.js"></script>
+    <script type="text/javascript" src="angular-route/angular-route.js"></script>
+    <script>
+      //Creat Angular app
+      var app = angular.module('myApp', ['ngRoute']);
+
+      //Configure Angular Routes
+      app.config(function($routeProvider){
+        $routeProvider
+        .when('/',{
+          templateUrl: "static/partials/login.html"
+        })
+        .when('/dashboard',{
+          templateUrl:"static/partials/dashboard.html"
+        })
+        .when('/show/:id',{
+          templateUrl:"static/partials/show.html"
+        })
+        .otherwise({
+          redirectTo: '/'
+        })
+      });
+    </script>
+    <!-- <script type="text/javascript" src="static/app.js"></script> -->
+    <script type="text/javascript" src="static/js/factories.js"></script>
+    <script type="text/javascript" src="static/js/controllers.js"></script>
+
+  </head>
+  <body>
+
+    <div ng-view=""></div>
+  </body>
+</html>

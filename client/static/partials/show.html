@@ -1,0 +1,16 @@
+<div ng-controller='showController'>
+    <a href="#!/">Bucket Lists</a>
+    <a href="#!/dashboard">Home</a>
+    <a href="#!/logout">logout</a>
+
+    <hr>
+
+  <h2>{{userfound.name}} Bucket List Items</h2>
+
+  <h3>Done</h3>
+
+  <h4 ng-repeat='list in lists' ng-show="list._creator.name == userfound.name || list.tagged.name == userfound.name">{{list._creator.name}} || {{list.title}} - {{list.description}} and tagged {{list.tagged.name}}...-{{list.createdAt | date:'MMM. dd, yyyy'}}...</h4>
+
+  <h3>Pending</h3>
+  
+</div>
